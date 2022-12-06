@@ -12,7 +12,6 @@ import (
 	"net"
 	"os"
 	"os/signal"
-	"runtime"
 	"sort"
 	"strconv"
 	"strings"
@@ -494,11 +493,7 @@ func Serve(opts *ServeConfig) {
 }
 
 func serverListener() (net.Listener, error) {
-	if runtime.GOOS == "windows" {
-		return serverListener_tcp()
-	}
-
-	return serverListener_unix()
+	return serverListener_tcp()
 }
 
 func serverListener_tcp() (net.Listener, error) {
